@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamon24 - Eng so'nggi va qiziqarli yangiliklar</title>
+    <!-- Font Awesome va Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --transition: all 0.3s ease;
+        }
+
+        .dark-theme {
+            --primary: #3b82f6;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .top-bar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .main-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .theme-toggle, .search-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover, .search-btn:hover {
+            background-color: var(--border);
+        }
+
+        /* BREAKING NEWS TICKER */
+        .breaking-news {
+            background-color: #ef4444;
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .breaking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .breaking-title {
+            background: #b91c1c;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-right: 15px;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        /* HERO / MAIN GRID */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .main-headline {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-headline img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .headline-content {
+            padding: 25px;
+        }
+
+        .category-tag {
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .headline-content h1 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .headline-content p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* SIDE NEWS (TRENDING) */
+        .sidebar-news {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .side-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .side-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .side-item:hover h4 {
+            color: var(--primary);
+        }
+
+        .side-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .side-item h4 {
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+
+        .side-item span {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* NEWS GRID SECTION */
+        .section-heading {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .news-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .news-card-body h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-card-body p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border);
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media(max-width: 900px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="top-bar">
+            <div><i class="fa-regular fa-calendar-days"></i> <span id="current-date"></span></div>
+            <div>
+                <a href="#" style="color: inherit; text-decoration: none; margin-right: 15px;"><i class="fa-solid fa-fire"></i> Trend</a>
+                <a href="#" style="color: inherit; text-decoration: none;"><i class="fa-solid fa-envelope"></i> Aloqa</a>
+            </div>
+        </div>
+        <div class="main-nav">
+            <a href="#" class="logo"><i class="fa-solid fa-globe"></i> Zamon24</a>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Asosiy</a></li>
+                <li><a href="#">Siyosat</a></li>
+                <li><a href="#">Texnologiya</a></li>
+                <li><a href="#">Iqtisodiyot</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Madaniyat</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="search-btn" title="Qidirish"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="theme-toggle" id="themeToggle" title="Rejimni o'zgartirish"><i class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREAKING NEWS -->
+    <div class="breaking-news">
+        <div class="breaking-container">
+            <span class="breaking-title">Tezkor</span>
+            <marquee scrollamount="5">Sun'iy intellekt sohasida yana bir ulkan yutuq qayd etildi: yangi avlod kvant chiplari taqdim etildi! &nbsp;&nbsp;|&nbsp;&nbsp; Toshkent shahrida yirik xalqaro innovatsion forum o'z ishini boshladi. &nbsp;&nbsp;|&nbsp;&nbsp; Futbol bo'yicha Chempionlar ligasining navbatdagi uchrashuvlari natijalari ma'lum bo'ldi.</marquee>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+
+        <!-- HERO SECTION (Main Headline + Sidebar) -->
+        <div class="hero-section">
+            <!-- Main News -->
+            <div class="main-headline">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Tech News">
+                <div class="headline-content">
+                    <span class="category-tag">Texnologiya</span>
+                    <h1>Kelajak texnologiyalari: 2026-yilda dunyoni o'zgartirib yuboradigan 5 ta asosiy yo'nalish</h1>
+                    <p>Sun'iy intellekt, kvant hisoblashlari va avtonom transport vositalari kundalik hayotimizga qanday ta'sir ko'rsatmoqda? Mutaxassislar kelgusi yillardagi eng katta o'zgarishlarni e'lon qilishdi.</p>
+                    <div class="meta-info">
+                        <span><i class="fa-regular fa-clock"></i> 2 soat oldin</span>
+                        <span><i class="fa-regular fa-eye"></i> 4,520 ko'rildi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Trending News -->
+            <div class="sidebar-news">
+                <div class="sidebar-title">
+                    <i class="fa-solid fa-fire text-orange"></i> Eng o'qilganlar
+                </div>
+                
+                <a href="#" class="side-item">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=200&q=80" alt="News">
+                    <div>
+                        <h4>Dasturlashni o'rganishni boshlayotganlar uchun eng muhim maslahatlar</h4>
+                        <span><i class="fa-regular fa-clock"></i> 3 soat oldin</span>
+                    </div>
+                </a>
+
+                <a href="#" class="side-item">
+                    <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=200&q=80" alt="News">
+                    <div>
+                        <h4>Yangi elektr avtomobillar bozorida narxlar keskin tushib ketdi</h4>
+                        <span><i class="fa-regular fa-clock"></i> 5 soat oldin</span>
+                    </div>
+                </a>
+
+                <a href="#" class="side-item">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c6232660102?auto=format&fit=crop&w=200&q=80" alt="News">
+                    <div>
+                        <h4>Jahon chempionati saralash bosqichi: Kutilmagan natijalar</h4>
+                        <span><i class="fa-regular fa-clock"></i> 7 soat oldin</span>
+                    </div>
+                </a>
+
+                <a href="#" class="side-item">
+                    <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=200&q=80" alt="News">
+                    <div>
+                        <h4>Sun'iy intellekt yordamida mobil ilovalar yaratish osonlashdi</h4>
+                        <span><i class="fa-regular fa-clock"></i> 10 soat oldin</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- MORE NEWS SECTION -->
+        <div class="section-heading">
+            <span>So'nggi yangiliklar</span>
+            <a href="#" style="font-size: 14px; color: var(--primary); text-decoration: none;">Barchasini ko'rish &rarr;</a>
+        </div>
+
+        <div class="news-grid">
+            <!-- Card 1 -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=500&q=80" alt="News">
+                <div class="news-card-body">
+                    <span class="category-tag">Kiberxavfsizlik</span>
+                    <h3>Kiberxavfsizlik bo'yicha xalqaro konferensiya o'tkazildi</h3>
+                    <p>Ma'lumotlar bazasini himoya qilish va zamonaviy tahdidlarga qarshi kurashish choralari muhokama qilindi.</p>
+                    <div class="meta-info">
+                        <span><i class="fa-regular fa-clock"></i> Kecha</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80" alt="News">
+                <div class="news-card-body">
+                    <span class="category-tag">Iqtisodiyot</span>
+                    <h3>Raqamli iqtisodiyot va uning istiqbollari</h3>
+                    <p>Moliyaviy texnologiyalar va elektron tijorat sohasidagi so'nggi o'sish ko'rsatkichlari e'lon qilindi.</p>
+                    <div class="meta-info">
+                        <span><i class="fa-regular fa-clock"></i> Kecha</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=500&q=80" alt="News">
+                <div class="news-card-body">
+                    <span class="category-tag">Fan</span>
+                    <h3>Koinotni o'rganishda yangi teleskopning hissasi</h3>
+                    <p>Olimlar uzoq galaktikalardan olingan yangi yuqori aniqlikdagi suratlarni taqdim etishdi.</p>
+                    <div class="meta-info">
+                        <span><i class="fa-regular fa-clock"></i> 2 kun oldin</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=500&q=80" alt="News">
+                <div class="news-card-body">
+                    <span class="category-tag">Ta'lim</span>
+                    <h3>Zamonaviy ta'lim tizimida onlayn platformalar roli</h3>
+                    <p>O'quvchilar va talabalar uchun sun'iy intellektga asoslangan repetitorlik dasturlari joriy etilmoqda.</p>
+                    <div class="meta-info">
+                        <span><i class="fa-regular fa-clock"></i> 2 kun oldin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Zamon24 haqida</h3>
+                <ul>
+                    <li><a href="#">Biz haqimizda</a></li>
+                    <li><a href="#">Tahririyat jamoasi</a></li>
+                    <li><a href="#">Reklama joylashtirish</a></li>
+                    <li><a href="#">Fikr-mulohazalar</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Bo'limlar</h3>
+                <ul>
+                    <li><a href="#">Siyosat</a></li>
+                    <li><a href="#">Texnologiya</a></li>
+                    <li><a href="#">Iqtisodiyot</a></li>
+                    <li><a href="#">Sport va Madaniyat</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Maxfiylik</h3>
+                <ul>
+                    <li><a href="#">Foydalanish shartlari</a></li>
+                    <li><a href="#">Maxfiylik siyosati</a></li>
+                    <li><a href="#">Cookie fayllari</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Bizni kuzating</h3>
+                <ul>
+                    <li><a href="#"><i class="fa-brands fa-telegram"></i> Telegram</a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fa-brands fa-youtube"></i> YouTube</a></li>
+                    <li><a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Zamon24. Barcha huquqlar himoyalangan. Saytdagi materiallardan foydalanganda havola ko'rsatilishi shart.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT (Dark/Light mode va Sana uchun) -->
+    <script>
+        // Joriy sanani chiqarish
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('uz-UZ', options);
+
+        // Tungi va kunduzgi rejimni boshqarish
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
